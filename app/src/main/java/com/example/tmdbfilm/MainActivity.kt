@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material.icons.filled.Movie
+import com.example.tmdbfilm.ui.theme.FilmDetail
 import com.example.tmdbfilm.ui.theme.Films
 import com.example.tmdbfilm.ui.theme.ProfilActeur
 
@@ -189,30 +190,32 @@ class MainActivity : ComponentActivity() {
 
 
                             }
-                            /*
-                           composable("Series") {
-                               ScreenSerie(
-                                   windowClass = windowClass,
-                                   mainViewModel = MainViewModel(),
-                                   navController
-                               )
-                           }
-                           composable("movie/{id}") {
-                               DetailsScreen(
-                                   it.arguments?.getString("id") ?: "",
-                                   viewModel,
-                                   navController
-                               )
-                           }
-                           composable("serie/{id}") {
-                               DetailsScreenSerie(
-                                   it.arguments?.getString("id") ?: "",
-                                   viewModel,
-                                   navController
-                               )
-                           }
 
-                            */
+
+                           composable("movie/{id}") {
+                               FilmDetail(
+                                   it.arguments?.getString("id") ?: "",
+                                   mainViewModel,
+                                   navController
+                               )
+                           }
+                            /*
+                            composable("Series") {
+                              ScreenSerie(
+                                  windowClass = windowClass,
+                                  mainViewModel = MainViewModel(),
+                                  navController
+                              )
+                          }
+                          composable("serie/{id}") {
+                              DetailsScreenSerie(
+                                  it.arguments?.getString("id") ?: "",
+                                  viewModel,
+                                  navController
+                              )
+                          }
+
+                           */
 
                             }
                                     }

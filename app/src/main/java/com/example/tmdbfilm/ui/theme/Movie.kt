@@ -154,7 +154,7 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                             textAlign = TextAlign.Center,
                                             modifier = Modifier.background(color = Color.Blue)
                                                 .fillMaxWidth().padding(10.dp),
-                                            color = Color.Black,
+                                            color = Color.White,
 
 
                                             )
@@ -166,52 +166,20 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                                     onClick =   { navController.navigate("movie/"+ ids) }
                                                 )
                                                 ,
-                                                contentDescription = "Image du film",
+                                                contentDescription = "Imagefilm",
                                                 contentScale = ContentScale.Fit
                                             )
                                             Row(
                                                 modifier = Modifier.fillMaxWidth(),
                                                 horizontalArrangement = Arrangement.SpaceBetween
                                             ) {
-                                                Image(
-                                                    painter = painterResource(id = R.drawable.star),
-                                                    contentDescription = stringResource(id = R.string.app_name),
-                                                    modifier = Modifier
-                                                        .size(50.dp)
 
-                                                )
-
-                                                Row(
-                                                    Modifier
-                                                        .background(Color.Black.copy(alpha = 0.4f))//50% opacity
-
-                                                        .size(40.dp)
-
-
-                                                ) {
-                                                    Text(
-
-                                                        score.toInt().toString(),
-
-                                                        color = Color.Black
-
-
-                                                    )
-                                                    Image(
-                                                        painter = painterResource(id = R.drawable.star),
-                                                        contentDescription = stringResource(id = R.string.app_name),
-                                                        modifier = Modifier
-                                                            .size(24.dp)
-
-                                                    )
-
+ {
                                                 }
 
                                             }
 
-
                                         }
-
                                     }
 
                                     Text(
@@ -223,12 +191,9 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                     )
                                 }
                             }
-
-
                         }
                     }
                 }
-
                 else -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
