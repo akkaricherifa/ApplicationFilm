@@ -20,7 +20,8 @@ import androidx.navigation.NavController
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import com.example.tmdbfilm.R
-
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.shape.CutCornerShape
 
 
 @Composable
@@ -61,7 +62,7 @@ fun HomePage(
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         ContactInfoRow(R.drawable.enveloppe, "akkaricherifa@gmail.com")
                         ContactInfoRow(R.drawable.linkedin, "www.linkedin.com/akkaricherifa")
-                        button(navController, contenu = "Choisissez Vos Films")
+                        button(navController, contenu = "C'est l'heure du popcorn !")
                     }
                 }
             }
@@ -90,31 +91,39 @@ fun LayoutVert(navController:NavController) {
                 painter = painterResource(id = R.drawable.photo1),
                 contentDescription = stringResource(id = R.string.app_name),
                 modifier = Modifier
-                    .size(200.dp) // Ajustez la taille de l'image selon vos besoins
-                    .clip(CircleShape)
+                    .size(220.dp)
+                    .clip(CutCornerShape(16.dp))
             )
 
             textes("Akkari Chérifa")
             Column {
-                texte(contenu = "Etudiante en 4éme Année-FIE4")
-                texte(contenu = "Ecole d'ingénieur ISIS - INU Champollion")
+                texte(contenu = " 'Etudiante en 4éme Année-FIE4' ")
+                texte(contenu = " 'Ecole d'ingénieur ISIS - INU Champollion' ")
+
             }
             Column {
                 Row (verticalAlignment = Alignment.CenterVertically)
                 {
-                    Image(painter = painterResource(id = R.drawable.enveloppe), contentDescription = stringResource(id = R.string.app_name), modifier = Modifier
-                        .size(30.dp) )
+                    Image(painter = painterResource(id = R.drawable.enveloppe),
+                        contentDescription = stringResource(id = R.string.app_name),
+                        modifier = Modifier.size(30.dp) )
 
 
-                    texte(contenu = "akkaricherifa@gmail.com")
+                    Text (
+                        text = "akkaricherifa@gmail.com",
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+
 
                 }
                 Row (verticalAlignment = Alignment.CenterVertically)
                 {
                     Image(painter = painterResource(id = R.drawable.linkedin), contentDescription = stringResource(id = R.string.app_name), modifier = Modifier
                         .size(30.dp) )
-                    texte(contenu = "www.linkedin.com/akkaricherifa")
-
+                    Text (
+                        text = "www.linkedin.com/akkaricherifa",
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
                 }
             }
 
@@ -167,13 +176,13 @@ fun button(navController: NavController, contenu: String) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Affichez l'icône de popcorn avant le texte
+
             Image(
-                painter = painterResource(id = R.drawable.popcorn), // Assurez-vous que l'icône est dans 'res/drawable'
+                painter = painterResource(id = R.drawable.popcorn),
                 contentDescription = "Popcorn Icon",
-                modifier = Modifier.size(24.dp) // Vous pouvez ajuster la taille de l'icône ici
+                modifier = Modifier.size(24.dp)
             )
-            Spacer(modifier = Modifier.width(8.dp)) // Espacement entre l'icône et le texte
+            Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = contenu,
                 color = Color.White

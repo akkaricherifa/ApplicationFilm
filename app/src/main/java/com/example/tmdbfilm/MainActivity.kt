@@ -14,8 +14,6 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,16 +22,16 @@ import com.example.tmdbfilm.ui.theme.HomePage
 import com.example.tmdbfilm.ui.theme.MainViewModel
 import com.example.tmdbfilm.ui.theme.TMDBFILMTheme
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.example.tmdbfilm.ui.theme.Screen
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.icons.filled.People
-import androidx.compose.material.icons.filled.Person
-import androidx.activity.viewModels
-
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.LiveTv
+import androidx.compose.material.icons.filled.Movie
+import com.example.tmdbfilm.ui.theme.Films
+import com.example.tmdbfilm.ui.theme.ProfilActeur
 
 
 
@@ -65,11 +63,13 @@ class MainActivity : ComponentActivity() {
                                 BottomNavigationItem(
                                     icon = {
                                         Icon(
-                                            Icons.Filled.Person,
+                                            Icons.Filled.AccountCircle,
                                             contentDescription = null
                                         )
                                     },
-                                    label = { },
+                                    label = {
+                                        Text("Profile")
+                                    },
                                     selected = currentDestination?.hierarchy?.any { it.route == "profile" } == true,
                                     onClick = {
                                         navController.navigate("profile") {
@@ -86,11 +86,13 @@ class MainActivity : ComponentActivity() {
                                     icon = {
 
                                         Icon(
-                                            painter = painterResource(R.drawable.photo1),
+                                            Icons.Filled.Movie,
                                             contentDescription = null
                                         )
                                     },
-                                    label = { },
+                                    label = {
+                                        Text("Films")
+                                    },
                                     selected = currentDestination?.hierarchy?.any { it.route == "films" } == true,
                                     onClick = {
                                         navController.navigate("films") {
@@ -108,11 +110,13 @@ class MainActivity : ComponentActivity() {
                                 BottomNavigationItem(
                                     icon = {
                                         Icon(
-                                            painter = painterResource(R.drawable.photo1),
+                                            Icons.Filled.LiveTv,
                                             contentDescription = null
                                         )
                                     },
-                                    label = { },
+                                    label = {
+                                        Text("Series")
+                                    },
                                     selected = currentDestination?.hierarchy?.any { it.route == "series" } == true,
                                     onClick = {
                                         navController.navigate("series") {
@@ -129,15 +133,17 @@ class MainActivity : ComponentActivity() {
                                 BottomNavigationItem(
                                     icon = {
                                         Icon(
-                                            Icons.Filled.People,
+                                            Icons.Filled.Groups,
                                             contentDescription = null,
 
                                             )
                                     },
-                                    label = { },
-                                    selected = currentDestination?.hierarchy?.any { it.route == "Actors" } == true,
+                                    label = {
+                                        Text("Acteurs")
+                                    },
+                                    selected = currentDestination?.hierarchy?.any { it.route == "Acteurs" } == true,
                                     onClick = {
-                                        navController.navigate("Actors") {
+                                        navController.navigate("Acteurs") {
 
                                             popUpTo(navController.graph.findStartDestination().id) {
                                                 saveState = true
@@ -164,7 +170,7 @@ class MainActivity : ComponentActivity() {
                             }
                             composable("films") {
 
-                                Screen(
+                                Films(
                                     windowClass = windowClass,
                                     mainViewModel = MainViewModel(),
                                     navController = navController
@@ -174,38 +180,39 @@ class MainActivity : ComponentActivity() {
 
                             }
 
-                            /*composable("Actors") {
+                           composable("Acteurs") {
 
-                                ScreenProfil(
+                                ProfilActeur(
                                     windowClass = windowClass,
                                     mainViewModel = MainViewModel()
                                 )
 
 
                             }
-                            composable("Series") {
-                                ScreenSerie(
-                                    windowClass = windowClass,
-                                    mainViewModel = MainViewModel(),
-                                    navController
-                                )
-                            }
-                            composable("movie/{id}") {
-                                DetailsScreen(
-                                    it.arguments?.getString("id") ?: "",
-                                    viewModel,
-                                    navController
-                                )
-                            }
-                            composable("serie/{id}") {
-                                DetailsScreenSerie(
-                                    it.arguments?.getString("id") ?: "",
-                                    viewModel,
-                                    navController
-                                )
-                            }
+                            /*
+                           composable("Series") {
+                               ScreenSerie(
+                                   windowClass = windowClass,
+                                   mainViewModel = MainViewModel(),
+                                   navController
+                               )
+                           }
+                           composable("movie/{id}") {
+                               DetailsScreen(
+                                   it.arguments?.getString("id") ?: "",
+                                   viewModel,
+                                   navController
+                               )
+                           }
+                           composable("serie/{id}") {
+                               DetailsScreenSerie(
+                                   it.arguments?.getString("id") ?: "",
+                                   viewModel,
+                                   navController
+                               )
+                           }
 
-                             */
+                            */
 
                             }
                                     }

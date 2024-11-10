@@ -43,6 +43,7 @@ import androidx.compose.material3.IconButton
 
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FindInPage
 
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
@@ -58,13 +59,8 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.AsyncImage
 
@@ -72,16 +68,12 @@ import coil.compose.AsyncImage
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Screen(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navController: NavController) {
-
-    var text by remember { mutableStateOf("") }
-    var active by remember { mutableStateOf(false) }
+fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navController: NavController) {
     val movies by mainViewModel.movies.collectAsState()
-
-
+    var active by remember { mutableStateOf(false) }
+    var text by remember { mutableStateOf("") }
 
     Scaffold {
-
 
         SearchBar(query = text, onQueryChange = { text = it },
             modifier = Modifier.fillMaxWidth(),
@@ -91,23 +83,18 @@ fun Screen(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControll
 
                 }
                 active = false
-
-
-
             },
-
-
             active = active,
             onActiveChange = {
                 active = it
             },
             placeholder = {
 
-                Text(text = "Search")
+                Text(text = "Recherche")
             },
             leadingIcon = {
                 Icon(
-                    Icons.Filled.Search,
+                    Icons.Filled.FindInPage,
                     contentDescription = null
                 )
             }
