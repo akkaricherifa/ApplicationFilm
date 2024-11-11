@@ -24,7 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -36,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -43,13 +43,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.tmdbfilm.R
 
 @Composable
-fun FilmDetail( id: String, viewModel: MainViewModel, navController: NavController) {
-    val movie by viewModel.movie.collectAsState()
+fun DetailsScreenSerie(id: String, viewModel: MainViewModel, navController: NavController) {
 
-    viewModel.movieDetails(id)
+    val serie by viewModel.serie.collectAsState()
 
+    viewModel.serieDetails(id)
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -74,37 +75,38 @@ fun FilmDetail( id: String, viewModel: MainViewModel, navController: NavControll
                             tint = Color.Blue
                         )
                     }
+
                 }
-                TitreFilm(movie)
-                Spacer(modifier = Modifier.height(14.dp))
-                PosterFilm(movie)
-                Spacer(modifier = Modifier.height(30.dp))
+                TitreSerie(serie)
+                Spacer(modifier = Modifier.height(16.dp))
+                PosterSeriie(serie)
+                Spacer(modifier = Modifier.height(16.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    PetitPoster(movie)
-                    Spacer(modifier = Modifier.width(10.dp))
+                    SmallPoster(serie)
+                    Spacer(modifier = Modifier.width(16.dp))
                     Column {
-                        FilmDate(movie)
+                        DateSerie(serie)
                         Spacer(modifier = Modifier.height(8.dp))
-                        TypeFilm(movie)
+                        TypeSerie(serie)
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                TextSynopsis(movie)
+                TextsSynops(serie)
                 Spacer(modifier = Modifier.height(16.dp))
-                Acteurs(movie)
+                Acteurs(serie)
             }
         }
     }
 }
 
 @Composable
-fun TitreFilm(movie: Movie?) {
-    if (movie != null) {
+fun TitreSerie(serie: Serie?) {
+    if (serie != null) {
         Text(
-            text = movie.original_title,
+            text = serie.original_name,
             fontFamily = FontFamily.Serif,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
@@ -115,10 +117,10 @@ fun TitreFilm(movie: Movie?) {
 }
 
 @Composable
-fun PosterFilm(movie: Movie?) {
-    if (movie != null) {
+fun PosterSeriie(serie: Serie?) {
+    if (serie != null) {
         AsyncImage(
-            model = "https://image.tmdb.org/t/p/w1280/" + movie.backdrop_path,
+            model = "https://image.tmdb.org/t/p/w1280/" + serie.backdrop_path,
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
@@ -129,11 +131,11 @@ fun PosterFilm(movie: Movie?) {
 }
 
 @Composable
-fun PetitPoster(movie: Movie?) {
-    if (movie != null) {
+fun SmallPoster(serie: Serie?) {
+    if (serie != null) {
         AsyncImage(
-            model = "https://image.tmdb.org/t/p/w300/" + movie.poster_path,
-            contentDescription = "Ma suimage",
+            model = "https://image.tmdb.org/t/p/w300/" + serie.poster_path,
+            contentDescription = "Ma super image",
             modifier = Modifier
                 .size(130.dp)
                 .clip(RoundedCornerShape(8.dp))
@@ -142,24 +144,22 @@ fun PetitPoster(movie: Movie?) {
 }
 
 @Composable
-fun FilmDate(movie: Movie?) {
-    if (movie != null) {
+fun DateSerie(serie: Serie?) {
+    if (serie != null) {
         Text(
-            text = movie.release_date,
+            text = serie.first_air_date,
             fontWeight = FontWeight.W300,
-            fontStyle = FontStyle.Normal,
+            fontStyle = FontStyle.Italic,
             fontSize = 20.sp,
             color = Color.Black,
-
             )
     }
 }
-
 @Composable
-fun TypeFilm(movie: Movie?){
-    if(movie!=null){
+fun TypeSerie(serie: Serie?){
+    if(serie!=null){
         LazyColumn(modifier = Modifier.height(70.dp)){
-            items(movie.genres){
+            items(serie.genres){
                     genre ->
                 Text(
                     text = genre.name,
@@ -174,8 +174,8 @@ fun TypeFilm(movie: Movie?){
 }
 
 @Composable
-fun TextSynopsis(movie: Movie?) {
-    if (movie != null) {
+fun TextsSynops(serie: Serie?) {
+    if (serie != null) {
         Text(
             text = "Synopsis : ",
             modifier = Modifier.padding(5.dp),
@@ -183,10 +183,10 @@ fun TextSynopsis(movie: Movie?) {
             color = Color.DarkGray,
             fontSize = 20.sp,
 
-        )
+            )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = movie.overview,
+            text = serie.overview,
             modifier = Modifier.padding(6.dp),
             color = Color.Black,
 
@@ -195,8 +195,8 @@ fun TextSynopsis(movie: Movie?) {
 }
 
 @Composable
-fun Acteurs(movie: Movie?) {
-    if (movie != null) {
+fun Acteurs(serie: Serie?) {
+    if (serie != null) {
         Text(
             text = "Têtes D'affiche : ",
             fontWeight = FontWeight.Bold,
@@ -209,36 +209,36 @@ fun Acteurs(movie: Movie?) {
                 .fillMaxWidth()
                 .height(200.dp)
         ) {
-            items(movie.credits.cast) { actor ->
-                ActeursList(actor)
+            items(serie.credits.cast) { actor ->
+                ActeurList(actor)
             }
         }
     }
 }
 @Composable
-fun ActeursList(actor: CastM) {
+fun ActeurList(actor: CastM) {
     Spacer(modifier = Modifier.height(16.dp))
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .padding(8.dp)
     ) {
-        // Box to add shadow around the image
+        // Box to add shadow and frame around the image
         Box(
             modifier = Modifier
-                .size(130.dp)
+                .size(130.dp) // Slightly larger than the image size for shadow effect
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color.Transparent)
-                .border(
-                    BorderStroke(2.dp, Color.Gray),
-                    shape = RoundedCornerShape(8.dp)
-                )
                 .shadow(
                     elevation = 8.dp, // Shadow size
                     shape = RoundedCornerShape(8.dp),
-                    ambientColor = Color.Black.copy(alpha = 0.2f),
-                    spotColor = Color.Black.copy(alpha = 0.1f)
+                    ambientColor = Color.Black.copy(alpha = 0.2f), // Adjust transparency
+                    spotColor = Color.Black.copy(alpha = 0.1f) // Soft shadow
+                )
+                .background(Color.Transparent) // Background for shadow effect
+                .border(
+                    BorderStroke(2.dp, Color.Gray), // Frame with gray color and 2.dp thickness
+                    shape = RoundedCornerShape(8.dp)
                 ),
             contentAlignment = Alignment.Center
         ) {
@@ -247,7 +247,7 @@ fun ActeursList(actor: CastM) {
                 contentDescription = null,
                 modifier = Modifier
                     .size(120.dp)
-                    .clip(RoundedCornerShape(8.dp))
+                    .clip(RoundedCornerShape(8.dp)) // Clip the image within the frame and shadow
             )
         }
 

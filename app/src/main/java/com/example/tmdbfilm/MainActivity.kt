@@ -30,10 +30,11 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material.icons.filled.Movie
+import com.example.tmdbfilm.ui.theme.DetailsScreenSerie
 import com.example.tmdbfilm.ui.theme.FilmDetail
 import com.example.tmdbfilm.ui.theme.Films
 import com.example.tmdbfilm.ui.theme.ProfilActeur
-
+import com.example.tmdbfilm.ui.theme.ScreenSerie
 
 
 class MainActivity : ComponentActivity() {
@@ -199,7 +200,7 @@ class MainActivity : ComponentActivity() {
                                    navController
                                )
                            }
-                            /*
+
                             composable("Series") {
                               ScreenSerie(
                                   windowClass = windowClass,
@@ -207,15 +208,16 @@ class MainActivity : ComponentActivity() {
                                   navController
                               )
                           }
+
                           composable("serie/{id}") {
                               DetailsScreenSerie(
                                   it.arguments?.getString("id") ?: "",
-                                  viewModel,
+                                  viewModel = MainViewModel(),
                                   navController
                               )
                           }
 
-                           */
+
 
                             }
                                     }
