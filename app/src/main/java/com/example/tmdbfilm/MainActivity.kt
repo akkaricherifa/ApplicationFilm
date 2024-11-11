@@ -79,14 +79,12 @@ class MainActivity : ComponentActivity() {
                                                 saveState = true
                                             }
                                             launchSingleTop = true
-
                                             restoreState = true
                                         }
                                     }
                                 )
                                 BottomNavigationItem(
                                     icon = {
-
                                         Icon(
                                             Icons.Filled.Movie,
                                             contentDescription = null
@@ -98,17 +96,14 @@ class MainActivity : ComponentActivity() {
                                     selected = currentDestination?.hierarchy?.any { it.route == "films" } == true,
                                     onClick = {
                                         navController.navigate("films") {
-
                                             popUpTo(navController.graph.findStartDestination().id) {
                                                 saveState = true
                                             }
                                             launchSingleTop = true
-
                                             restoreState = true
                                         }
                                     }
                                 )
-
                                 BottomNavigationItem(
                                     icon = {
                                         Icon(
@@ -122,12 +117,10 @@ class MainActivity : ComponentActivity() {
                                     selected = currentDestination?.hierarchy?.any { it.route == "series" } == true,
                                     onClick = {
                                         navController.navigate("series") {
-
                                             popUpTo(navController.graph.findStartDestination().id) {
                                                 saveState = true
                                             }
                                             launchSingleTop = true
-
                                             restoreState = true
                                         }
                                     }
@@ -137,7 +130,6 @@ class MainActivity : ComponentActivity() {
                                         Icon(
                                             Icons.Filled.Groups,
                                             contentDescription = null,
-
                                             )
                                     },
                                     label = {
@@ -146,13 +138,10 @@ class MainActivity : ComponentActivity() {
                                     selected = currentDestination?.hierarchy?.any { it.route == "Acteurs" } == true,
                                     onClick = {
                                         navController.navigate("Acteurs") {
-
                                             popUpTo(navController.graph.findStartDestination().id) {
                                                 saveState = true
                                             }
-
                                             launchSingleTop = true
-
                                             restoreState = true
                                         }
                                     }
@@ -165,34 +154,23 @@ class MainActivity : ComponentActivity() {
                             startDestination = "profile"
                         ) {
                             composable("profile") {
-
                                 HomePage(
                                     windowClass = windowClass,
                                     navController = navController)
                             }
                             composable("films") {
-
                                 Films(
                                     windowClass = windowClass,
                                     mainViewModel = MainViewModel(),
                                     navController = navController
-
                                 )
-
-
                             }
-
                            composable("Acteurs") {
-
                                 ProfilActeur(
                                     windowClass = windowClass,
                                     mainViewModel = MainViewModel()
                                 )
-
-
                             }
-
-
                            composable("movie/{id}") {
                                FilmDetail(
                                    it.arguments?.getString("id") ?: "",
@@ -200,7 +178,6 @@ class MainActivity : ComponentActivity() {
                                    navController
                                )
                            }
-
                             composable("Series") {
                               ScreenSerie(
                                   windowClass = windowClass,
@@ -208,28 +185,19 @@ class MainActivity : ComponentActivity() {
                                   navController
                               )
                           }
-
                           composable("serie/{id}") {
                               DetailsScreenSerie(
                                   it.arguments?.getString("id") ?: "",
                                   viewModel = MainViewModel(),
                                   navController
-                              )
-                          }
-
-
-
-                            }
-                                    }
-                                    }
+                              ) }
                         }
-
-
-
-                        }
-
                     }
                 }
+            }
+        }
+     }
+}
 
 
 

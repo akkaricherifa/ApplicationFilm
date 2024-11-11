@@ -1,7 +1,6 @@
 package com.example.tmdbfilm.ui.theme
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -43,19 +40,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.tmdbfilm.R
 
 @Composable
 fun DetailsScreenSerie(id: String, viewModel: MainViewModel, navController: NavController) {
-
     val serie by viewModel.serie.collectAsState()
-
     viewModel.serieDetails(id)
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .fillMaxWidth(),
-
         color = Color.White
     ) {
         LazyColumn(
@@ -67,7 +60,6 @@ fun DetailsScreenSerie(id: String, viewModel: MainViewModel, navController: NavC
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
@@ -75,7 +67,6 @@ fun DetailsScreenSerie(id: String, viewModel: MainViewModel, navController: NavC
                             tint = Color.Blue
                         )
                     }
-
                 }
                 TitreSerie(serie)
                 Spacer(modifier = Modifier.height(16.dp))
@@ -165,11 +156,9 @@ fun TypeSerie(serie: Serie?){
                     text = genre.name,
                     fontStyle = FontStyle.Italic,
                     color = Color.Black,
-
                     )
             }
         }
-
     }
 }
 
@@ -189,7 +178,6 @@ fun TextsSynops(serie: Serie?) {
             text = serie.overview,
             modifier = Modifier.padding(6.dp),
             color = Color.Black,
-
             )
     }
 }
@@ -227,17 +215,17 @@ fun ActeurList(actor: CastM) {
         // Box to add shadow and frame around the image
         Box(
             modifier = Modifier
-                .size(130.dp) // Slightly larger than the image size for shadow effect
+                .size(130.dp)
                 .clip(RoundedCornerShape(8.dp))
                 .shadow(
-                    elevation = 8.dp, // Shadow size
+                    elevation = 8.dp,
                     shape = RoundedCornerShape(8.dp),
-                    ambientColor = Color.Black.copy(alpha = 0.2f), // Adjust transparency
-                    spotColor = Color.Black.copy(alpha = 0.1f) // Soft shadow
+                    ambientColor = Color.Black.copy(alpha = 0.2f),
+                    spotColor = Color.Black.copy(alpha = 0.1f)
                 )
-                .background(Color.Transparent) // Background for shadow effect
+                .background(Color.Transparent)
                 .border(
-                    BorderStroke(2.dp, Color.Gray), // Frame with gray color and 2.dp thickness
+                    BorderStroke(2.dp, Color.Gray),
                     shape = RoundedCornerShape(8.dp)
                 ),
             contentAlignment = Alignment.Center
@@ -247,10 +235,9 @@ fun ActeurList(actor: CastM) {
                 contentDescription = null,
                 modifier = Modifier
                     .size(120.dp)
-                    .clip(RoundedCornerShape(8.dp)) // Clip the image within the frame and shadow
+                    .clip(RoundedCornerShape(8.dp))
             )
         }
-
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = actor.name,

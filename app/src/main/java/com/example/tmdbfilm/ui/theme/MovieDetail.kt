@@ -1,7 +1,6 @@
 package com.example.tmdbfilm.ui.theme
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -24,10 +23,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -47,14 +44,11 @@ import coil.compose.AsyncImage
 @Composable
 fun FilmDetail( id: String, viewModel: MainViewModel, navController: NavController) {
     val movie by viewModel.movie.collectAsState()
-
     viewModel.movieDetails(id)
-
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .fillMaxWidth(),
-
         color = Color.White
     ) {
         LazyColumn(
@@ -66,7 +60,6 @@ fun FilmDetail( id: String, viewModel: MainViewModel, navController: NavControll
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
@@ -165,11 +158,9 @@ fun TypeFilm(movie: Movie?){
                     text = genre.name,
                     fontStyle = FontStyle.Italic,
                     color = Color.Black,
-
                     )
             }
         }
-
     }
 }
 
@@ -189,7 +180,6 @@ fun TextSynopsis(movie: Movie?) {
             text = movie.overview,
             modifier = Modifier.padding(6.dp),
             color = Color.Black,
-
             )
     }
 }
@@ -224,7 +214,6 @@ fun ActeursList(actor: CastM) {
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        // Box to add shadow around the image
         Box(
             modifier = Modifier
                 .size(130.dp)
