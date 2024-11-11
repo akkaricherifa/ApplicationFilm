@@ -45,6 +45,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import coil.compose.AsyncImage
 
 
@@ -144,7 +145,8 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                         title_movie,
                                         modifier = Modifier.padding(16.dp),
                                         textAlign = TextAlign.Center,
-                                        color = Color.Black
+                                        color = Color.Black,
+                                        textDecoration = TextDecoration.Underline
                                     )
                                 }
                             }
@@ -218,7 +220,8 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                         title_movie,
                                         modifier = Modifier.padding(16.dp),
                                         textAlign = TextAlign.Center,
-                                        color = Color.Cyan
+                                        color = Color.Black,
+                                        textDecoration = TextDecoration.Underline
 
                                     )
                                 }

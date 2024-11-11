@@ -40,7 +40,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import coil.compose.AsyncImage
+import java.time.format.TextStyle
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "SuspiciousIndentation")
@@ -145,7 +147,8 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                         title_serie,
                                         modifier = Modifier.padding(16.dp), // Ajouter de l'espace autour du texte
                                         textAlign = TextAlign.Center,
-                                        color = Color.Black
+                                        color = Color.Black,
+                                        textDecoration = TextDecoration.Underline
                                     )
                                 }
                             }
@@ -212,7 +215,8 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                         title_serie,
                                         modifier = Modifier.padding(16.dp),
                                         textAlign = TextAlign.Center,
-                                        color = Color.Black
+                                        color = Color.Black,
+                                        textDecoration = TextDecoration.Underline
                                     )
                                 }
                             }
