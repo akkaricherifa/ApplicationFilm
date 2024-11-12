@@ -249,7 +249,7 @@ fun ActeursList(actor: CastM) {
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = actor.character,
-            fontWeight = FontWeight.W300,
+            fontWeight = FontWeight.W400,
             color = Color.Black,
         )
     }

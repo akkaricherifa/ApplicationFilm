@@ -69,6 +69,7 @@ fun ProfilActeur(windowClass: WindowSizeClass,mainViewModel: MainViewModel) {
 
 
     Scaffold {
+        //la barre de recherche pour rechercher les acteurs by SearchActors
         SearchBar(query = text, onQueryChange = { text = it },
             modifier = Modifier.fillMaxWidth(),
             onSearch = {
@@ -95,6 +96,7 @@ fun ProfilActeur(windowClass: WindowSizeClass,mainViewModel: MainViewModel) {
         ) {
         }
 
+        // pour la couleur du background de l'activity
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = Color.White
@@ -108,6 +110,7 @@ fun ProfilActeur(windowClass: WindowSizeClass,mainViewModel: MainViewModel) {
                         horizontalArrangement = Arrangement.spacedBy(14.dp),
                         verticalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
+                        //récupérer la liste des acteursss
                         items(actors) {
                                 actor ->
                             val url = "https://image.tmdb.org/t/p/w780" + actor.profile_path
@@ -135,7 +138,8 @@ fun ProfilActeur(windowClass: WindowSizeClass,mainViewModel: MainViewModel) {
                                     }
                                     Text(
                                         actor,
-                                        modifier = Modifier.padding(16.dp), // Ajouter de l'espace autour du texte
+                                        // Ajouter de l'espace autour du zone de texte
+                                        modifier = Modifier.padding(16.dp),
                                         textAlign = TextAlign.Center,
                                         color=Color.Black,
 

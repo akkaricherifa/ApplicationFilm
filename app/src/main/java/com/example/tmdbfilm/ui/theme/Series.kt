@@ -42,7 +42,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import coil.compose.AsyncImage
-import java.time.format.TextStyle
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "SuspiciousIndentation")
@@ -147,8 +146,9 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                         title_serie,
                                         modifier = Modifier.padding(16.dp), // Ajouter de l'espace autour du texte
                                         textAlign = TextAlign.Center,
+                                        textDecoration = TextDecoration.Underline,
                                         color = Color.Black,
-                                        textDecoration = TextDecoration.Underline
+
                                     )
                                 }
                             }
@@ -164,12 +164,13 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                         items(series) {
                                 serie ->
                             val url = "https://image.tmdb.org/t/p/w780" + serie.poster_path
-                            val title_serie = serie.name
                             val score = serie.vote_average
+                            val title_serie = serie.name
                             val date = serie.first_air_date
                             Box(
                                 contentAlignment = Alignment.Center,
-                                modifier = Modifier.fillMaxSize().clickable(onClick = {  navController.navigate("serie/"+serie.id)}),
+                                modifier = Modifier.fillMaxSize().clickable(onClick = {
+                                    navController.navigate("serie/"+serie.id)}),
                             ) {
                                 Column(
                                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -200,8 +201,9 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                             ) {
                                                 Row(
                                                     Modifier
-                                                        .background(Color.Black.copy(alpha = 0.4f))
+                                                        .background(Color.Transparent)
                                                         .size(40.dp)
+
                                                 ) {
                                                     Text(
                                                         score.toInt().toString(),
@@ -211,6 +213,7 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                             }
                                         }
                                     }
+                                    //qq modifications appliqués sur le texte
                                     Text(
                                         title_serie,
                                         modifier = Modifier.padding(16.dp),

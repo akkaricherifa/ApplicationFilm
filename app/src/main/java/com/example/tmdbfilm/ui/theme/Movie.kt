@@ -2,7 +2,6 @@ package com.example.tmdbfilm.ui.theme
 
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,11 +25,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.tmdbfilm.R
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FindInPage
@@ -58,13 +54,16 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
     var text by remember { mutableStateOf("") }
 
     Scaffold {
+        // la bare de recherche pour rechercher dans la liste des movies
         SearchBar(query = text, onQueryChange = { text = it },
             modifier = Modifier.fillMaxWidth(),
             onSearch = {
                 if (text=="") {
+                    mainViewModel.getMovies()
 
                 }
                 active = false
+                mainViewModel.searchMovies(text)
             },
             active = active,
             onActiveChange = {
@@ -206,12 +205,7 @@ fun Films(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navControlle
                                                         score.toInt().toString(),
                                                         color = Color.White
                                                     )
-                                                    Image(
-                                                        painter = painterResource(id = R.drawable.enveloppe),
-                                                        contentDescription = stringResource(id = R.string.app_name),
-                                                        modifier = Modifier
-                                                            .size(24.dp)
-                                                    )
+
                                                 }
                                             }
                                         }
