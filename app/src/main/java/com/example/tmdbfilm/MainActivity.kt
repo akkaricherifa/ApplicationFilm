@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
@@ -70,8 +71,6 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     )
-                                    // le boutton necessaire pour naviguer vers les films
-
                                     BottomNavigationItem(
                                         icon = { Icon(Icons.Filled.Movie, contentDescription = null) },
                                         label = { Text("Films") },
@@ -84,10 +83,7 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     )
-
-                                    // le boutton necessaire pour naviguer vers les series TV
                                     BottomNavigationItem(
-
                                         icon = { Icon(Icons.Filled.LiveTv, contentDescription = null) },
                                         label = { Text("Series") },
                                         selected = currentDestination?.hierarchy?.any { it.route == "series" } == true,
@@ -99,8 +95,6 @@ class MainActivity : ComponentActivity() {
                                             }
                                         }
                                     )
-
-                                    // le boutton necessaire pour naviguer vers les acteurs
                                     BottomNavigationItem(
                                         icon = { Icon(Icons.Filled.Groups, contentDescription = null) },
                                         label = { Text("Acteurs") },
@@ -122,14 +116,12 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.padding(innerPadding),
                             startDestination = "profile"
                         ) {
-                            //mon PROFILE
                             composable("profile") {
                                 HomePage(
                                     windowClass = windowClass,
                                     navController = navController
                                 )
                             }
-                            // FILMS
                             composable("films") {
                                 Films(
                                     windowClass = windowClass,
@@ -137,14 +129,12 @@ class MainActivity : ComponentActivity() {
                                     navController = navController
                                 )
                             }
-                            //ACTORSSSS
                             composable("Acteurs") {
                                 ProfilActeur(
                                     windowClass = windowClass,
                                     mainViewModel = mainViewModel
                                 )
                             }
-                            // MOVIE BY ID
                             composable("movie/{id}") {
                                 FilmDetail(
                                     it.arguments?.getString("id") ?: "",
@@ -152,7 +142,6 @@ class MainActivity : ComponentActivity() {
                                     navController
                                 )
                             }
-                            // SERIES TV
                             composable("Series") {
                                 ScreenSerie(
                                     windowClass = windowClass,
@@ -160,7 +149,6 @@ class MainActivity : ComponentActivity() {
                                     navController
                                 )
                             }
-                            // SERIES ID
                             composable("serie/{id}") {
                                 DetailsScreenSerie(
                                     it.arguments?.getString("id") ?: "",
