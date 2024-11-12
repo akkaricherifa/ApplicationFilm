@@ -48,6 +48,8 @@ class MainActivity : ComponentActivity() {
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val windowClass = calculateWindowSizeClass(this)
+            
+                val currentDestination = navBackStackEntry?.destination
 
             TMDBFILMTheme{
                 Surface(
@@ -58,6 +60,8 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     Scaffold(
                         bottomBar = {
+                            if (currentDestination?.hasRoute<homePage>() == false){
+                            
                             BottomNavigation(backgroundColor = Color.Blue) {
 
                                 val navBackStackEntry by navController.currentBackStackEntryAsState()
