@@ -131,13 +131,10 @@ fun ScreenSerie(windowClass: WindowSizeClass,mainViewModel: MainViewModel,navCon
                                             ) {
                                                 Row(
                                                     Modifier
-                                                        .background(Color.Black.copy(alpha = 0.4f))
+
                                                         .size(40.dp)
                                                 ) {
-                                                    Text(
-                                                        score.toInt().toString(),
-                                                        color = Color.Black
-                                                    )
+
                                                 }
                                             }
                                         }
