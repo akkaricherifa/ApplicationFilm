@@ -34,6 +34,7 @@ import androidx.compose.material.icons.filled.Settings
 import com.example.tmdbfilm.ui.theme.DetailsScreenSerie
 import com.example.tmdbfilm.ui.theme.FilmDetail
 import com.example.tmdbfilm.ui.theme.Films
+import com.example.tmdbfilm.ui.theme.FilmsHorrorScreen
 import com.example.tmdbfilm.ui.theme.ProfilActeur
 import com.example.tmdbfilm.ui.theme.ScreenSerie
 
@@ -109,17 +110,23 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
                                     BottomNavigationItem(
-                                        icon = { Icon(Icons.Filled.Settings, contentDescription = "New") },
-                                        label = { Text("New") },
-                                        selected = currentDestination?.hierarchy?.any { it.route == "settings" } == true,
+                                        icon = { Icon(Icons.Filled.Movie, contentDescription = null) },
+                                        label = { Text("horrorMovies") },
+                                        selected = currentDestination?.hierarchy?.any { it.route == "horrorMovies" } == true, // Vérification de la route sélectionnée
                                         onClick = {
-                                            navController.navigate("settings") {
+                                            navController.navigate("horrorMovies") {
+                                                // Naviguer vers l'écran "horrorMovies" et gérer l'état de la navigation
                                                 popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                                                 launchSingleTop = true
                                                 restoreState = true
                                             }
                                         }
                                     )
+
+
+
+
+
                                 }
                             }
                         }
@@ -168,7 +175,16 @@ class MainActivity : ComponentActivity() {
                                     viewModel = mainViewModel,
                                     navController
                                 )
+
+                                composable("horrorMovies") {
+                                    FilmsHorrorScreen(
+                                        mainViewModel = mainViewModel,
+                                        navController = navController
+                                    )
+                                }
                             }
+
+
                         }
                     }
                 }

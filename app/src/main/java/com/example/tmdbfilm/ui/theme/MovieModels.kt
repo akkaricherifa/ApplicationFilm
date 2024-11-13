@@ -202,3 +202,23 @@ data class Cast(
     val popularity: Double,
     val profile_path: String
 )
+
+data class HorrorMoviesResponse(
+    val page: Int = 0,
+    val results: List<HorrorMovie> = listOf()  // Liste des films d'horreur (HorrorMovie)
+)
+
+
+data class HorrorMovie(
+    var overview: String = "",
+    val release_date: String = "",
+    val id: Int,
+    val title: String = "",
+    val original_title: String = "",
+    val backdrop_path: String? = "",
+    val genre_ids: List<Int> = listOf(),
+    val poster_path: String? = "",
+    val vote_average: Double
+)
+
+

@@ -60,7 +60,6 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.1.0")
     testImplementation("junit:junit:4.13.2")
 
-
     implementation ("androidx.compose.runtime:runtime:1.5.0")
     // Core and Activity Compose
     implementation("androidx.core:core-ktx:1.10.1")
@@ -75,7 +74,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation ("androidx.compose.material:material:1.5.0")
     implementation ("androidx.compose.material:material-icons-extended:1.5.0")
-
+    implementation ("androidx.compose.foundation:foundation:<version>")
     // Moshi Converter for Retrofit
 
     // Testing

@@ -1,58 +1,73 @@
 package com.example.tmdbfilm.ui.theme
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class MainViewModel : ViewModel() {
-    private val filmId:String = ""
+    private val filmId: String = ""
+
+    private val _horrorMovies = MutableStateFlow<List<HorrorMovie>>(emptyList())
+    val horrorMovies: StateFlow<List<HorrorMovie>> = _horrorMovies
+
 
     val moviiess = MutableStateFlow<List<Movie>>(listOf())
-    val actors= MutableStateFlow<List<TmdbActors>>(listOf())
-    val movie=MutableStateFlow<Movie?>(null)
+    val actors = MutableStateFlow<List<TmdbActors>>(listOf())
+    val movie = MutableStateFlow<Movie?>(null)
     val movies = MutableStateFlow<List<TmdbMovie>>(listOf())
-    val serie=MutableStateFlow<Serie?>(null)
-    val append_to_response="credits"
-    val TV= MutableStateFlow<List<TmdbTv>>(listOf())
+    val serie = MutableStateFlow<Serie?>(null)
+    val append_to_response = "credits"
+    val TV = MutableStateFlow<List<TmdbTv>>(listOf())
     val api_key = "24714091346b3079a0414fe486ba3858"
     val retrofit = Retrofit.Builder()
         .baseUrl("https://api.themoviedb.org/3/")
         .addConverterFactory(MoshiConverterFactory.create())
         .build();
     val api = retrofit.create(TmdbApi::class.java)
+
     init {
         getMovies()
         getActors()
         getTv()
     }
+
     fun getMovies() {
         viewModelScope.launch {
             movies.value = api.lastmovies(api_key).results
         }
     }
+
     fun movieDetails(id: String) {
         viewModelScope.launch {
             movie.value = api.movieInfo(id, api_key, append_to_response)
         }
     }
+
     fun serieDetails(id: String) {
         viewModelScope.launch {
-            serie.value = api. SerieInfo(id, api_key, append_to_response)
+            serie.value = api.SerieInfo(id, api_key, append_to_response)
         }
     }
+
     fun getTv() {
         viewModelScope.launch {
             TV.value = api.lastTv(api_key).results
         }
     }
+
     fun getActors() {
         viewModelScope.launch {
             actors.value = api.getActors(api_key).results
         }
     }
+
     fun searchMovies(query: String) {
         viewModelScope.launch {
             try {
@@ -62,6 +77,7 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
     fun searchActors(query: String) {
         viewModelScope.launch {
             try {
@@ -71,6 +87,7 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
     fun searchSeries(query: String) {
         viewModelScope.launch {
             try {
@@ -80,4 +97,16 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+    fun fetchHorrorMovies() {
+        viewModelScope.launch {
+            try {
+                val response = api.getHorrorMovies(api_key)
+                _horrorMovies.value = response.results
+            } catch (e: Exception) {
+                Log.e("MainViewModel", "Error fetching horror movies", e)
+            }
+        }
+    }
 }
+

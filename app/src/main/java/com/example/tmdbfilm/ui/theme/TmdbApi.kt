@@ -9,8 +9,12 @@ interface TmdbApi {
     suspend fun lastmovies(@Query("api_key") api_key: String):
             TmdbMovieResult
 
-    @GET ("movie/{id}")
-    suspend fun movieInfo (@Path("id") id: String,@Query("api_key")apikey: String,@Query("append_to_response")append_to_response:String):
+    @GET("movie/{id}")
+    suspend fun movieInfo(
+        @Path("id") id: String,
+        @Query("api_key") apikey: String,
+        @Query("append_to_response") append_to_response: String
+    ):
             Movie
 
     @GET("trending/person/week")
@@ -21,22 +25,43 @@ interface TmdbApi {
     suspend fun lastTv(@Query("api_key") api_key: String):
             TmdbTvResult
 
-    @GET ("tv/{id}")
-    suspend fun SerieInfo (@Path("id") id: String,@Query("api_key")apikey: String,@Query("append_to_response")append_to_response:String):
+    @GET("tv/{id}")
+    suspend fun SerieInfo(
+        @Path("id") id: String,
+        @Query("api_key") apikey: String,
+        @Query("append_to_response") append_to_response: String
+    ):
             Serie
 
     @GET("search/movie")
-    suspend fun searchmovies(@Query("api_key") api_key: String,
-                             @Query("query") searchtext: String):
+    suspend fun searchmovies(
+        @Query("api_key") api_key: String,
+        @Query("query") searchtext: String
+    ):
             TmdbMovieResult
 
     @GET("search/person")
-    suspend fun searchactors(@Query("api_key") api_key: String,
-                             @Query("query") searchtext: String):
+    suspend fun searchactors(
+        @Query("api_key") api_key: String,
+        @Query("query") searchtext: String
+    ):
             TmdbPersonneResult
 
     @GET("search/tv")
-    suspend fun searchtv(@Query("api_key") api_key: String,
-                         @Query("query") searchtext: String):
+    suspend fun searchtv(
+        @Query("api_key") api_key: String,
+        @Query("query") searchtext: String
+    ):
             TmdbTvResult
+
+
+    @GET("discover/movie")
+    suspend fun getHorrorMovies(
+        @Query("api_key") api_key: String, // Remplacez ici
+        @Query("with_genres") genreId: Int = 27 // Genre "Horror" ID
+    ): HorrorMoviesResponse
 }
+
+
+
+
