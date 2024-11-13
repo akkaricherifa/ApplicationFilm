@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.filled.Settings
 import com.example.tmdbfilm.ui.theme.DetailsScreenSerie
 import com.example.tmdbfilm.ui.theme.FilmDetail
 import com.example.tmdbfilm.ui.theme.Films
@@ -101,6 +102,18 @@ class MainActivity : ComponentActivity() {
                                         selected = currentDestination?.hierarchy?.any { it.route == "Acteurs" } == true,
                                         onClick = {
                                             navController.navigate("Acteurs") {
+                                                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                                launchSingleTop = true
+                                                restoreState = true
+                                            }
+                                        }
+                                    )
+                                    BottomNavigationItem(
+                                        icon = { Icon(Icons.Filled.Settings, contentDescription = "New") },
+                                        label = { Text("New") },
+                                        selected = currentDestination?.hierarchy?.any { it.route == "settings" } == true,
+                                        onClick = {
+                                            navController.navigate("settings") {
                                                 popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                                                 launchSingleTop = true
                                                 restoreState = true
